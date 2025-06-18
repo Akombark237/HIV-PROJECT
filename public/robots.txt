@@ -1,0 +1,67 @@
+# HIV Crisis Support Platform - Robots.txt
+# This file tells search engines which pages they can and cannot crawl
+
+User-agent: *
+Allow: /
+
+# Allow important pages for search engines
+Allow: /crisis-support
+Allow: /medical-support
+Allow: /hiv-care-integration
+Allow: /safety-security
+Allow: /educational-content
+Allow: /communication-tools
+Allow: /support-resources
+Allow: /GBV/Hub
+Allow: /emergency/crisis
+Allow: /providers/
+Allow: /help-support
+Allow: /accessibility
+Allow: /localization
+Allow: /offline
+
+# Disallow sensitive and private areas
+Disallow: /admin-dashboard
+Disallow: /authentication/profile
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /next.config.ts
+
+# Disallow temporary and development files
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow specific bots for healthcare and crisis support
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block aggressive crawlers to preserve server resources
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://hiv-crisis-support.vercel.app/sitemap.xml
+
+# Additional information
+# This platform provides critical healthcare and crisis support services
+# Please crawl responsibly to ensure availability for users in need
