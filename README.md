@@ -1,7 +1,7 @@
 # 🏥 HIV Crisis Support Platform - Cameroon
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/hiv-crisis-support)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/hiv-crisis-support)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Akombark237/HIV-PROJECT)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Akombark237/HIV-PROJECT)
 
 > **⚠️ Critical Healthcare Platform**: This application provides life-saving crisis support and emergency services for People Living with HIV (PLHIV) in Cameroon.
 
@@ -52,8 +52,8 @@ Provide comprehensive, secure, and accessible crisis support for HIV patients ex
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/hiv-crisis-support.git
-cd hiv-crisis-support
+git clone https://github.com/Akombark237/HIV-PROJECT.git
+cd HIV-PROJECT
 
 # Install dependencies
 npm install
