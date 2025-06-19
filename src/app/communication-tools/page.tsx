@@ -773,7 +773,7 @@ export default CommunicationToolsPage;
           <div className="flex items-center space-x-2 mb-2">
             <h3 className="text-lg font-bold text-gray-900">{resource.title}</h3>
             {resource.verified && (
-              <CheckCircle className="w-5 h-5 text-green-500" title="Verified Resource" />
+              <CheckCircle className="w-5 h-5 text-green-500" aria-label="Verified Resource" />
             )}
           </div>
           <p className="text-gray-600 text-sm mb-3">{resource.description}</p>

@@ -241,7 +241,7 @@ const EducationalContentPage = () => {
           <div className="flex items-center space-x-2 mb-2">
             <h3 className="text-lg font-bold text-gray-900 line-clamp-2">{content.title}</h3>
             {content.featured && (
-              <Award className="w-5 h-5 text-yellow-500" title="Featured Content" />
+              <Award className="w-5 h-5 text-yellow-500" aria-label="Featured Content" />
             )}
           </div>
           <div className="flex items-center space-x-2 mb-3">

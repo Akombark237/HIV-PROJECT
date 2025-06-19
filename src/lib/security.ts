@@ -154,7 +154,7 @@ export function triggerEmergencyExit(): void {
 }
 
 // Setup emergency exit keyboard shortcut
-export function setupEmergencyExit(): void {
+export function setupEmergencyExit(): (() => void) | void {
   if (typeof window !== 'undefined') {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey && event.shiftKey && event.key === 'X') {
@@ -164,7 +164,7 @@ export function setupEmergencyExit(): void {
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    
+
     // Return cleanup function
     return () => {
       document.removeEventListener('keydown', handleKeyDown);

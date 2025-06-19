@@ -443,7 +443,7 @@ const SupportResourcesPage = () => {
           <div className="flex items-center space-x-2 mb-2">
             <h3 className="text-xl font-bold text-gray-900">{provider.name}</h3>
             {provider.verified && (
-              <CheckCircle className="w-5 h-5 text-green-500" title="Verified Provider" />
+              <CheckCircle className="w-5 h-5 text-green-500" aria-label="Verified Provider" />
             )}
           </div>
           <div className="flex items-center space-x-2 mb-3">

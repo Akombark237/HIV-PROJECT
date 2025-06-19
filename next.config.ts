@@ -27,37 +27,10 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
 
-  // PWA and Service Worker
+  // Headers configuration (PWA, Security, and Caching)
   async headers() {
     return [
-      {
-        source: '/sw.js',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-          {
-            key: 'Service-Worker-Allowed',
-            value: '/',
-          },
-        ],
-      },
-      {
-        source: '/manifest.json',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
-
-  // Security headers
-  async headers() {
-    return [
+      // Security headers for all pages
       {
         source: '/(.*)',
         headers: [
@@ -90,7 +63,31 @@ const nextConfig: NextConfig = {
             value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()'
           }
         ]
-      }
+      },
+      // Service Worker headers
+      {
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+          {
+            key: 'Service-Worker-Allowed',
+            value: '/',
+          },
+        ],
+      },
+      // PWA Manifest headers
+      {
+        source: '/manifest.json',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
     ];
   },
 

@@ -300,10 +300,10 @@ const HIVCareIntegrationPage = () => {
           <div className="flex items-center space-x-2 mb-2">
             <h3 className="text-xl font-bold text-gray-900">{provider.name}</h3>
             {provider.hivSpecialist && (
-              <Award className="w-5 h-5 text-yellow-500" title="HIV Specialist" />
+              <Award className="w-5 h-5 text-yellow-500" aria-label="HIV Specialist" />
             )}
             {provider.gbvTrained && (
-              <Shield className="w-5 h-5 text-green-500" title="GBV Trained" />
+              <Shield className="w-5 h-5 text-green-500" aria-label="GBV Trained" />
             )}
           </div>
           <div className="flex items-center space-x-2 mb-3">
@@ -465,10 +465,10 @@ const HIVCareIntegrationPage = () => {
               <div className="flex items-center space-x-3 mb-4">
                 <h1 className="text-3xl font-bold text-gray-900">{selectedProvider.name}</h1>
                 {selectedProvider.hivSpecialist && (
-                  <Award className="w-6 h-6 text-yellow-500" title="HIV Specialist" />
+                  <Award className="w-6 h-6 text-yellow-500" aria-label="HIV Specialist" />
                 )}
                 {selectedProvider.gbvTrained && (
-                  <Shield className="w-6 h-6 text-green-500" title="GBV Trained Staff" />
+                  <Shield className="w-6 h-6 text-green-500" aria-label="GBV Trained Staff" />
                 )}
               </div>
               <div className="flex items-center space-x-4 mb-4">
