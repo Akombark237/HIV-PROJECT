@@ -61,7 +61,7 @@ services:
         - package-lock.json
         - next.config.ts
         - tsconfig.json
-        - tailwind.config.ts
+        - tailwind.config.js
         - postcss.config.mjs
       ignoredPaths:
         - README.md
