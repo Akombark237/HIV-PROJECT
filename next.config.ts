@@ -105,6 +105,13 @@ const nextConfig: NextConfig = {
   // Output configuration
   output: 'standalone',
 
+  // Render.com specific configuration
+  ...(process.env.RENDER && {
+    assetPrefix: process.env.NEXT_PUBLIC_APP_URL,
+    trailingSlash: false,
+    poweredByHeader: false,
+  }),
+
   // Bundle analyzer (only in development)
   ...(process.env.ANALYZE === 'true' && {
     webpack: (config: any) => {

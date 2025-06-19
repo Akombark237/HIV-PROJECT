@@ -1,0 +1,145 @@
+# HIV Crisis Support Platform - Render Configuration
+# This file configures the deployment of the HIV Crisis Support Platform on Render
+
+services:
+  # Main web service
+  - type: web
+    name: hiv-crisis-support-cameroon
+    runtime: node
+    plan: starter # Can be upgraded to standard or pro
+    region: oregon # Choose region closest to Cameroon users
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    
+    # Environment variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_APP_NAME
+        value: "HIV Crisis Support - Cameroon"
+      - key: NEXT_PUBLIC_APP_VERSION
+        value: "1.0.0"
+      - key: NEXT_PUBLIC_ENVIRONMENT
+        value: production
+      - key: NEXT_PUBLIC_EMERGENCY_POLICE
+        value: "117"
+      - key: NEXT_PUBLIC_EMERGENCY_MEDICAL
+        value: "115"
+      - key: NEXT_PUBLIC_EMERGENCY_FIRE
+        value: "118"
+      - key: NEXT_PUBLIC_CRISIS_HOTLINE
+        value: "+237-75-627-8901"
+      - key: NEXT_PUBLIC_DEFAULT_LOCALE
+        value: "en"
+      - key: NEXT_PUBLIC_SUPPORTED_LOCALES
+        value: "en,fr"
+      - key: NEXT_PUBLIC_DEFAULT_TIMEZONE
+        value: "Africa/Douala"
+      - key: NEXT_PUBLIC_ENABLE_PWA
+        value: "true"
+      - key: NEXT_PUBLIC_ENABLE_OFFLINE_MODE
+        value: "true"
+      
+    # Secret environment variables (set these in Render dashboard)
+    # - NEXTAUTH_SECRET (generate with: openssl rand -base64 32)
+    # - NEXT_PUBLIC_APP_URL (your Render app URL)
+    # - DATABASE_URL (if using database)
+    # - NEXT_PUBLIC_GOOGLE_ANALYTICS_ID (optional)
+    # - NEXT_PUBLIC_SENTRY_DSN (optional)
+
+    # Auto-deploy settings
+    autoDeploy: true
+    branch: main
+    
+    # Build settings
+    buildFilter:
+      paths:
+        - src/**
+        - public/**
+        - package.json
+        - package-lock.json
+        - next.config.ts
+        - tsconfig.json
+        - tailwind.config.ts
+        - postcss.config.mjs
+      ignoredPaths:
+        - README.md
+        - docs/**
+        - .github/**
+        - scripts/**
+
+    # Custom headers for security and PWA
+    headers:
+      - path: /*
+        headers:
+          X-Frame-Options: DENY
+          X-XSS-Protection: "1; mode=block"
+          X-Content-Type-Options: nosniff
+          Referrer-Policy: origin-when-cross-origin
+          Permissions-Policy: "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
+          Strict-Transport-Security: "max-age=63072000; includeSubDomains; preload"
+      
+      - path: /sw.js
+        headers:
+          Cache-Control: "public, max-age=0, must-revalidate"
+          Service-Worker-Allowed: "/"
+      
+      - path: /manifest.json
+        headers:
+          Cache-Control: "public, max-age=31536000, immutable"
+      
+      - path: /_next/static/*
+        headers:
+          Cache-Control: "public, max-age=31536000, immutable"
+      
+      - path: /icons/*
+        headers:
+          Cache-Control: "public, max-age=31536000, immutable"
+
+    # Redirects
+    redirects:
+      - source: /home
+        destination: /
+        type: permanent
+      - source: /emergency
+        destination: /emergency/crisis
+        type: temporary
+
+    # Disk storage for logs and temporary files
+    disk:
+      name: hiv-crisis-support-disk
+      mountPath: /opt/render/project/storage
+      sizeGB: 1
+
+# Optional: Background worker service (for future features)
+# - type: worker
+#   name: hiv-crisis-support-worker
+#   runtime: node
+#   buildCommand: npm ci
+#   startCommand: npm run worker
+#   envVarsFrom:
+#     - fromService: hiv-crisis-support-cameroon
+
+# Optional: Cron job service (for maintenance tasks)
+# - type: cron
+#   name: hiv-crisis-support-maintenance
+#   runtime: node
+#   schedule: "0 2 * * *" # Daily at 2 AM
+#   buildCommand: npm ci
+#   startCommand: npm run maintenance
+#   envVarsFrom:
+#     - fromService: hiv-crisis-support-cameroon
+
+# Optional: Redis service (for session storage and caching)
+# - type: redis
+#   name: hiv-crisis-support-redis
+#   plan: starter
+#   maxmemoryPolicy: allkeys-lru
+
+# Optional: PostgreSQL database (for user data and analytics)
+# - type: pserv
+#   name: hiv-crisis-support-db
+#   plan: starter
+#   databaseName: hiv_crisis_support
+#   databaseUser: hiv_user

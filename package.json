@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
-    "start": "next start",
+    "build:render": "npm ci && npm run build",
+    "start": "node server.js",
+    "start:next": "next start",
+    "start:render": "node server.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
@@ -14,9 +17,12 @@
     "export": "next export",
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "netlify deploy --prod",
-    "postbuild": "next-sitemap",
+    "deploy:render": "git push origin main",
+    "postbuild": "next-sitemap || echo 'Sitemap generation skipped'",
     "clean": "rm -rf .next out",
-    "prepare": "husky install || true"
+    "prepare": "husky install || true",
+    "health-check": "curl -f http://localhost:3000/api/health || exit 1",
+    "prestart": "echo 'Starting HIV Crisis Support Platform - Cameroon'"
   },
   "dependencies": {
     "lucide-react": "^0.516.0",
